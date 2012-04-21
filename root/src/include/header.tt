@@ -1,0 +1,24 @@
+
+		<div id="header">
+		
+			<h1>CPAN Monitor</h1>
+			
+			<div id="menu">
+[% IF c.user_exists %]
+				<ul class="left">
+					<li class="first"><a href="[% c.uri_for('/') %]">Home</a></li>
+					<li><a href="[% c.uri_for( '/monitor/add' ) %]">Add</a></li>
+					
+				</ul>
+				
+				<ul class="right">
+					<li><a href="[% c.uri_for_action('/auth/change_password', [ c.user.id ] ) %]">Change Password</a></li>
+					<li><a href="[% c.uri_for_action('/auth/logout') %]">Logout</a></li>
+					<li>[% c.user.email %]</li>
+				</ul>
+			
+				<div class="clearBoth"></div>
+[% END %]				
+			</div>
+
+		</div>

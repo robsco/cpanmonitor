@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>Monitoring</title>
+	   
+		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	
+	</head>
+
+	<body id="monitor">
+
+		[% INCLUDE 'include/header.tt' %]
+
+		<div id="content">
+		
+			<h2>Monitor</h2>
+
+			<table>
+				<tr>
+					<th>Distribution</th>
+					<th>Author</th>
+					<th>Version</th>
+					<th>Abstract</th>
+					<th>Send To</th>
+					<th>Checked</th>
+					<th>Updated</th>
+				</tr>
+				
+[% FOREACH user_alert IN user_alerts %]
+				<tr>
+				
+					<td>[% user_alert.alert.distribution %]</td>
+					<td>[% user_alert.alert.author %]</td>
+					<td>[% user_alert.alert.version %]</td>
+					<td>[% user_alert.alert.abstract %]</td>
+					<td>[% user_alert.email %]</td>
+					<td>[% user_alert.alert.checked.strftime( '%d/%m/%Y %H:%M:%S' ) %]</td>
+					<td>[% user_alert.alert.updated.strftime( '%d/%m/%Y %H:%M:%S' ) %]</td>
+				</tr>
+[% END %]
+
+			</table>
+			
+		</div>
+
+[% INCLUDE 'include/footer.tt' %]
+
+	</body>
+
+</html>

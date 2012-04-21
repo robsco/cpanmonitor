@@ -1,0 +1,1 @@
+./script/cpanmonitor_create.pl model DB DBIC::Schema CPANMonitor::Schema create=static components=TimeStamp,PassphraseColumn dbi:mysql:cpanmonitor_dev cpanmonitor_dev cpanmonitor_dev '{ AutoCommit => 1 }'

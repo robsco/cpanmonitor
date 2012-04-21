@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>Monitoring</title>
+	   
+		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	
+	</head>
+
+	<body id="change-password">
+
+
+		[% INCLUDE 'include/header.tt' %]
+				
+		<div id="content">
+		
+			<h2>Add Monitor</h2>
+
+<form action="[% c.uri_for( '/monitor/add' ) %]" method="post">
+
+	[% form.field('distribution').render %]
+	
+	[% form.field('development').render %]
+
+	[% form.field('email').render %]
+
+	[% form.field('submit').render %]
+
+</form>
+
+
+
+		</div>
+
+[% INCLUDE 'include/footer.tt' %]
+
+	</body>
+
+</html>

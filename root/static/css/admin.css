@@ -1,0 +1,542 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+
+body
+{
+	font-family: Arial,Verdana,sans-serif;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	font-size: 0.8em;
+}
+
+
+
+
+
+
+h1
+{
+
+}
+
+
+
+a:link, a:visited, a:hover
+{
+	color: #006699;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+
+
+#header
+{
+	padding: 0;
+}
+
+	#header h1
+	{
+		padding: 10px;
+	}
+
+	#header #menu
+	{
+		padding: 5px 0;
+		border-top: solid 1px #ccc;
+		border-bottom: solid 1px #ccc;
+	}
+
+		#header #menu ul.left
+		{
+			display: block;
+			float: left;
+			padding: 0 10px;
+			width: 400px;
+		}
+
+			#header #menu ul.left li
+			{
+				list-style: none;
+				display: inline;
+				padding: 0 10px;
+				font-size: 1.2em;
+			}
+
+			#header #menu ul.left li.first
+			{
+				padding: 0 10px 0 0;
+			}
+
+		#header #menu ul.right
+		{
+			display: block;
+			padding: 0 10px;
+			float: right;
+			width: 500px;
+			text-align: right;
+		}
+
+			#header #menu ul.right li
+			{
+				list-style: none;
+				display: inline;
+				padding: 0 10px;
+				font-size: 1.2em;
+			}
+
+			#header #menu ul.right li.first
+			{
+				padding: 0 10px 0 0;
+			}
+
+
+
+
+#footer
+{
+	padding: 10px;
+	border-top: solid 1px #ccc;	
+	margin-bottom: 20px;
+}
+
+#footer p
+{
+	font-size: 0.7em;
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+h2 {
+	font-size: 120%;
+	color: #464358;
+	padding: 0;
+	margin: 10px 0 10px 10px;
+
+}
+
+h3 {
+	font-size: 110%;
+	color: #464358;
+	padding: 0;
+	margin: 10px 0 10px 10px;
+}
+
+
+
+
+.clearBoth
+{
+	clear: both;
+}
+
+table
+{
+	float: left;
+
+	border-collapse: collapse;
+	table-layout: auto;
+	border-top: solid 1px #999;
+	border-left: solid 1px #999;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0px;
+}
+
+table.retailer
+{
+	float: left;
+	clear:both;
+	border-collapse: collapse;
+	table-layout: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0px;
+	border: none;
+
+}
+
+table tr
+{
+	background-color: #fff;
+}
+
+table tr.alternate
+{
+	background-color: #eee;
+}
+
+table tr.removed
+{
+	color: #aaa;
+}
+
+
+table tr.pr0
+{
+    background-color: #fff;
+}
+
+table tr.notlive
+{
+    background-color: #fbb;
+}
+
+table tr.green
+{
+    background-color: #b3f5ba;
+}
+
+table th.green
+{
+    background-color: #83c58a;
+}
+
+table th.center
+{
+    text-align: center;
+}
+
+table tr.hidden
+{
+    background-color: #ccc;
+    color: #666;
+}
+
+table tr.expired
+{
+    background-color: #ccc;
+    color: #666;
+}
+
+table th
+{
+	background-color: #ccc;
+	color: #000;
+	text-align: left;
+	border-bottom: solid 1px #999;
+	border-right: solid 1px #999;
+	cursor: default;
+
+	padding: 2px 5px;
+}
+
+table th.left
+{
+	text-align: left;
+}
+
+table th.right
+{
+	text-align: right;
+}
+
+table td
+{
+	text-align: left;
+	vertical-align: top;
+	border-bottom: solid 1px #999;
+	border-right: solid 1px #999;
+	cursor: default;
+
+	padding: 2px 5px;
+	
+}
+
+
+table.retailer td
+{
+	text-align: left;
+	vertical-align: top;
+	cursor: default;
+	border: none;
+	padding: 3px 5px;
+    text-align: center;
+
+	
+}
+
+table td.nowrap
+{
+       white-space: nowrap;
+}
+
+table td.logo
+{
+    padding: 0;    
+        font-size:0;
+}
+
+table td.left
+{
+    text-align: left;
+}
+
+
+table td ul
+{
+    padding: 0;
+    margin: 0 0 1px 1px;
+    list-style-type:none;
+    
+}
+
+
+
+
+select.retailer
+{
+	
+	font-size: 0.9em;
+	width: 280px;
+}
+
+select.retailer_networks
+{
+    height: 100px;    
+    float: left;
+        width: 256px;
+}
+
+select.retailer_categories
+{
+    height: 600px;    
+    
+}
+
+
+
+
+
+
+
+
+#field-email, #field-old-password, #field-password, #field-confirm-password
+{
+	clear: both;
+	margin: 10px 0;
+}
+
+
+label
+{
+	width: 100px;
+	float: left;
+	font-size: 1.2em;
+	margin-top: 5px;
+}
+
+
+
+input, textarea, select
+{
+	background: #e5f9ff;
+	border: solid 1px #6fdbff;
+	width: 250px;	
+	padding: 3px;
+	font-size: 1.2em;
+}
+
+
+#field-submit input
+{
+    width: 100px;
+
+
+}
+
+
+
+
+
+p.error
+{
+	color: #ff0000;
+}
+
+ul.errors
+{
+	color: #ff0000;
+	margin-bottom: 15px;
+}
+
+ul.errors li
+{
+	padding-top: 3px;	
+	margin-left: 20px;
+}
+
+
+label.error
+{
+	color: #ff0000 !important;
+}
+
+input.error, textarea.error
+{
+	border: 1px solid #ff0000 !important;
+	background: #ffefef;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+body#login #content
+{
+	width: 340px;
+	margin: 200px auto;
+}
+
+body#login #content h2
+{
+	text-align: center;
+}
+
+body#login label
+{
+	width: 80px;
+}
+
+body#login #field-submit input
+{
+	margin-left: 80px;
+}
+
+body#login p#forgot-password
+{
+	margin-left: 80px;
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+body#forgot-password #content
+{
+	width: 370px;
+	margin: 200px auto;
+}
+
+body#forgot-password #content h2
+{
+	text-align: center;
+}
+
+body#forgot-password label
+{
+	width: 110px;
+}
+
+body#forgot-password #field-submit input
+{
+	margin-left: 110px;
+	width: 150px;
+}
+
+
+
+
+
+
+body#reset-password #content
+{
+	width: 390px;
+	margin: 200px auto;
+}
+
+body#reset-password #content h2
+{
+	text-align: center;
+}
+
+body#reset-password label
+{
+	width: 130px;
+}
+
+body#reset-password #field-submit input
+{
+	margin-left: 130px;
+	width: 150px;
+}
+
+
+
+
+
+body#change-password #content
+{
+	width: 390px;
+	margin: 200px auto;
+}
+
+body#change-password #content h2
+{
+	text-align: center;
+}
+
+body#change-password label
+{
+	width: 130px;
+}
+
+body#change-password #field-submit input
+{
+	margin-left: 130px;
+	width: 150px;
+}
+
+body#change-password p#cancel-password-change
+{
+	margin-left: 130px;
+	margin-top: 10px;
+}
+
+
+
+
+

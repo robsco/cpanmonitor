@@ -1,0 +1,17 @@
+
+		<div class="clearBoth"></div>
+
+		<div id="footer">
+
+			<p>Took [% took %] seconds</p>
+			
+			<div class="clearBoth"></div>
+			
+		</div>
+
+		<div class="clearBoth"></div>
+		
+	</body>
+
+</html>
+

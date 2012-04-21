@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>CPAN Monitor Login</title>
+	   
+		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	
+	</head>
+
+	<body id="login">
+
+		<div id="content">
+		
+			<h2>CPAN Monitor Login</h2>
+
+[% INCLUDE 'auth/include/messages.tt' %]
+
+			<form method="post" action="[% c.uri_for_action('/auth/login') | html %]" autocomplete="off">
+
+			[% form.field('email').render %]
+			
+			[% form.field('password').render %]
+			
+			[% form.field('submit').render %]
+
+			</form>
+
+			<p id="forgot-password"><a href="[% c.uri_for_action('/auth/forgot_password') %]">I've forgot my password</a></p>
+
+		</div>
+
+		<div class="clearBoth"></div>
+
+		<script type="text/javascript">
+			document.getElementById('email').focus();
+			document.getElementById('email').setSelectionRange(0,0);
+		</script>
+	</body>
+
+</html>
