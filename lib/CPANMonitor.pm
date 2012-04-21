@@ -6,8 +6,6 @@ use Catalyst::Runtime 5.80;
 
 use Log::Log4perl::Catalyst;
 
-# use lib '/home/rob/lib-src/Log-AutoDump/src/lib';
-
 use Log::AutoDump;
 
 # Set flags and add plugins for the application.
@@ -68,9 +66,7 @@ __PACKAGE__->config(
 
 __PACKAGE__->log( Log::AutoDump->new( level => 7, dumps => 0 ) );
   
-# Start the application
 __PACKAGE__->setup();
-
 
 =head1 NAME
 

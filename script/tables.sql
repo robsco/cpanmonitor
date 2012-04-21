@@ -41,6 +41,7 @@ insert into user (email) values ('rob@intelcompute.com');
 
 
 
+
 CREATE TABLE user_role
 ( 
 	user    int   unsigned   not null,
