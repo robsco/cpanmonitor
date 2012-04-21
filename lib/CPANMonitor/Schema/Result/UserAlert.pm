@@ -117,6 +117,24 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("user", "alert");
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<user_alert_email>
+
+=over 4
+
+=item * L</user>
+
+=item * L</alert>
+
+=item * L</email>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("user_alert_email", ["user", "alert", "email"]);
+
 =head1 RELATIONS
 
 =head2 alert
@@ -150,8 +168,13 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-18 19:05:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4cElstevvRQa3IlAvtUtmw
+# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-22 00:44:05
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/ZdW7qCe01UZGHNAUk9rKg
+
+__PACKAGE__->add_columns(
+    "added",
+    { data_type => 'timestamp', set_on_create => 1 },
+);
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

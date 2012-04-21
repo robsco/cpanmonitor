@@ -129,6 +129,20 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<distribution>
+
+=over 4
+
+=item * L</distribution>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("distribution", ["distribution"]);
+
 =head1 RELATIONS
 
 =head2 user_alerts
@@ -147,8 +161,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-17 19:35:52
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zQtVaFKmb6djZpFFpDDQUg
+# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-22 00:39:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aRvjOuO4s9gfOvdpmSmJgA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -22,6 +22,7 @@
 					<th>Distribution</th>
 					<th>Author</th>
 					<th>Version</th>
+					<th>Dev</th>
 					<th>Abstract</th>
 					<th>Send To</th>
 					<th>Checked</th>
@@ -34,6 +35,7 @@
 					<td>[% user_alert.alert.distribution %]</td>
 					<td>[% user_alert.alert.author %]</td>
 					<td>[% user_alert.alert.version %]</td>
+					<td>[% user_alert.development %]</td>
 					<td>[% user_alert.alert.abstract %]</td>
 					<td>[% user_alert.email %]</td>
 					<td>[% user_alert.alert.checked.strftime( '%d/%m/%Y %H:%M:%S' ) %]</td>

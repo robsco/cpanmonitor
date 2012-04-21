@@ -7,6 +7,7 @@ extends 'HTML::FormHandler';
 use MetaCPAN::API;
          
 has_field distribution => ( type         => 'Text',
+                             required => 1,
                         tags         => { no_errors => 1 },
                         wrapper_attr => { id => 'field-distribution' },
                       );

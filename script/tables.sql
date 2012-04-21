@@ -74,8 +74,10 @@ create table alert
     updated    datetime    not null,
 
    primary key (id)
-   
+
 ) ENGINE=InnoDB default charset=utf8;
+
+alter table alert add unique index distribution (distribution);
 
 
 create table user_alert
@@ -93,7 +95,7 @@ primary key (user, alert ),
 
 ) ENGINE=InnoDB default charset=utf8;
 
-
+alter table user_alert add unique index user_alert_email (user, alert, email);
 
 
 

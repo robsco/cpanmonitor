@@ -79,12 +79,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 		{
 			# first check if the dist is already in the db
 			
-			my $alert = $c->model('DB::Alert')->search( { distribution => $form->field('distribution')->value }, {} )->single;
-			
-			if ( ! $alert )
-			{
-				$alert = $c->model('DB::Alert')->create( { distribution => $form->field('distribution')->value } );
-			}
+			my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
 			
 			# call MetaCPAN
 			
@@ -105,8 +100,8 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				$c->log->trace( "PACKAGE:" , $distribution );
 				
 				$alert->abstract( $distribution->{ abstract } );
-				$alert->author( $distribution->{ author } );
-				$alert->version( $distribution->{ version } );
+				$alert->author(   $distribution->{ author }   );
+				$alert->version(  $distribution->{ version }  );
 				
 				$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
 				
@@ -115,7 +110,16 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 
 			$c->log->warn( $@ );
 			
-			my $user_alert = $c->model('DB::UserAlert')->create( { alert => $alert->id, development => $form->field('development')->value, user => $c->user->id, email => $form->field('email')->value, } );
+	
+			
+			my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
+
+
+			$user_alert->development( $form->field('development')->value );
+			
+			$user_alert->update;
+
+
 			
 			$c->log->trace("Redirecting to /monitor/list");
 			
