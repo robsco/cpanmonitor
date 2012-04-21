@@ -4,6 +4,7 @@ use HTML::FormHandler::Moose;
 
 extends 'HTML::FormHandler';
 
+use MetaCPAN::API;
          
 has_field distribution => ( type         => 'Text',
                         tags         => { no_errors => 1 },
@@ -27,8 +28,25 @@ has_field submit => ( type         => 'Submit',
                     );
 
 
+sub validate_distribution
+{
+	my ( $self, $field ) = @_;
+	
+	my $mcpan = MetaCPAN::API->new;			
+			
+	my $metacpan_dist = $field->value;
 
-
+	$metacpan_dist =~ s/::/-/g;
+	
+	eval {
+		my $distribution = $mcpan->release( distribution => $metacpan_dist );
+	};
+	
+	if ( my $exception = $@ )
+	{
+		$field->add_error( "Package not found" ) if $exception =~ /Not Found/;
+	}
+}
 
 1;
 

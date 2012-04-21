@@ -34,6 +34,8 @@ sub base :Chained('/auth/authenticated') :PathPart('monitor') :CaptureArgs(0)
 {
 	my ( $self, $c ) = @_;
 
+	$c->log->trace( "In Monitor->base");
+
 }
 
 
@@ -43,14 +45,18 @@ sub index :Chained('base') :PathPart('') :Args(0)
 {
 	my ( $self, $c ) = @_;
 
+	$c->log->trace( "In Monitor->index");
+
 	$c->response->redirect( $c->uri_for_action( '/monitor/list' ) );
-	return;
+	$c->detach;
 }
 
 
 sub list :Chained('base') :PathPart('list') :Args(0)
 {
 	my ( $self, $c ) = @_;
+
+	$c->log->trace( "In Monitor->list");
 
 	my @user_alerts = $c->user->user_alerts->all;
 
@@ -60,6 +66,8 @@ sub list :Chained('base') :PathPart('list') :Args(0)
 sub add :Chained('base') :PathPart('add') :Args(0)
 {
 	my ( $self, $c ) = @_;
+
+	$c->log->trace( "In Monitor->add");
 
 	my $form = CPANMonitor::Form::Alert->new;
 
@@ -80,6 +88,8 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 			
 			# call MetaCPAN
 			
+			$c->log->trace( "using API");
+			
 			my $mcpan = MetaCPAN::API->new;			
 			
 			my $metacpan_dist = $alert->distribution;
@@ -88,7 +98,11 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 			my $distribution = {};
 			
 			eval {
+				$c->log->trace( "Looking up " . $metacpan_dist );
+				
 				$distribution = $mcpan->release( distribution => $metacpan_dist );
+				
+				$c->log->trace( "PACKAGE:" , $distribution );
 				
 				$alert->abstract( $distribution->{ abstract } );
 				$alert->author( $distribution->{ author } );
@@ -99,10 +113,14 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				$alert->update;
 			};
 
+			$c->log->warn( $@ );
+			
 			my $user_alert = $c->model('DB::UserAlert')->create( { alert => $alert->id, development => $form->field('development')->value, user => $c->user->id, email => $form->field('email')->value, } );
-						
+			
+			$c->log->trace("Redirecting to /monitor/list");
+			
 		 	$c->response->redirect( $c->uri_for( $self->action_for( '/monitor/list' ), { mid => $c->set_status_msg("alert added") } ) );
-		 	return;
+		 	$c->detach;
 		}
 	}		
 	else

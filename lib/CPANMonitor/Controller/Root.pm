@@ -31,24 +31,25 @@ The root page (/)
 
 sub base :Chained('/') :PathPart('') :CaptureArgs(0)
 {
-		my ( $self, $c ) = @_;
+	my ( $self, $c ) = @_;
 
+	$c->log->trace( "In Root->base");
+	
 	$c->stash( started => scalar( gettimeofday ) );
 	
 	$c->load_status_msgs;
-	
-	my $foo = { key => 'this', age => 27 };
-	
-	$c->log->debug("Hello", $foo, $self);
 }
 
 sub index :Chained('base') :PathPart('') :Args(0)
 {
 	my ( $self, $c ) = @_;
 
-	$c->response->redirect( $c->uri_for_action( '/monitor/index' ) );
-	return;
+	$c->log->trace( "In Root->index");
 
+	$c->log->debug("Homepage request redirecting to /monitor/index");
+	
+	$c->response->redirect( $c->uri_for_action( '/monitor/index' ) );
+	$c->detach;
 }
 
 =head2 default
@@ -61,6 +62,10 @@ sub default :Chained('base') :PathPart('') :Args
 {
 	my ( $self, $c ) = @_;
 
+	$c->log->trace( "In Root->default");
+
+	$c->log->debug("Page not found");
+	
 	$c->response->body( 'Page not found' );
 	
 	$c->response->status(404);

@@ -17,6 +17,16 @@
 		<div id="content">
 		
 			<h2>Add Monitor</h2>
+			
+[% IF form.has_errors %]
+			<p class="error">Some fields had errors:</p>
+					
+			<ul class="errors">
+	[% FOREACH msg IN form.errors %]
+				<li>[% msg | html %]</li>
+	[% END %]
+			</ul>
+[% END %]
 
 <form action="[% c.uri_for( '/monitor/add' ) %]" method="post">
 

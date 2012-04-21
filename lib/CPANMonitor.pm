@@ -21,6 +21,7 @@ use Log::AutoDump;
 #                 directory
 
 use Catalyst qw/
+-Debug
     ConfigLoader
     Static::Simple
 
@@ -64,7 +65,7 @@ __PACKAGE__->config(
 	
 );
 
-__PACKAGE__->log( Log::AutoDump->new( level => 7, dumps => 0 ) );
+__PACKAGE__->log( Log::AutoDump->new( level => 7, dumps => 1 ) );
   
 __PACKAGE__->setup();
 
