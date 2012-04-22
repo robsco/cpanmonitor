@@ -3,7 +3,9 @@ package CPANMonitor::Form::Alert;
 use HTML::FormHandler::Moose;
 
 extends 'HTML::FormHandler';
-   
+
+use MetaCPAN::API;
+
 has_field distribution => ( type         => 'Text',
                              required => 1,
                         tags         => { no_errors => 1 },
@@ -25,6 +27,17 @@ has_field submit => ( type         => 'Submit',
                       value        => 'Add',
                       wrapper_attr => { id => 'field-submit', },
                     );
+
+
+sub html_attributes
+{
+	my ($self, $field, $type, $attr, $result) = @_;
+    
+	if( $type eq 'label' && $result->has_errors )
+	{
+		push @{$attr->{class}}, 'error';
+	}
+}
 
 1;
 

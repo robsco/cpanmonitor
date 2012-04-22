@@ -122,66 +122,86 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 
 	my $form = CPANMonitor::Form::Alert->new;
 
-	if ( $c->req->param )
-	{
-		$form->process( params => $c->request->params );
-
-		if ( $form->validated )
-		{
-			# first check if the dist is already in the db
-			
-			my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
-			
-			# call MetaCPAN
-			
-			$c->log->trace( "using API");
-			
-			my $mcpan = MetaCPAN::API->new;			
-			
-			my $metacpan_dist = $alert->distribution;
-			$metacpan_dist =~ s/::/-/g;
-			
-			my $distribution = {};
-			
-			eval {
-				$c->log->trace( "Looking up " . $metacpan_dist );
-				
-				$distribution = $mcpan->release( distribution => $metacpan_dist );
-				
-				$c->log->trace( "PACKAGE:" , $distribution );
-				
-				$alert->abstract( $distribution->{ abstract } );
-				$alert->author(   $distribution->{ author }   );
-				$alert->version(  $distribution->{ version }  );
-				
-				$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
-				
-				$alert->update;
-			};
-
-			$c->log->warn( $@ );
-			
-	
-			
-			my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
-
-
-			$user_alert->development( $form->field('development')->value );
-			
-			$user_alert->update;
-
-
-			
-			$c->log->trace("Redirecting to /monitor/list");
-			
-		 	$c->response->redirect( $c->uri_for( $self->action_for( '/monitor/list' ), { mid => $c->set_status_msg("alert added") } ) );
-		 	$c->detach;
-		}
-	}		
-	else
+	if ( ! $c->req->param )
 	{
 		$form->process( init_object => { email => $c->user->email } );
 	}
+	else
+	{
+		if ( $c->req->method eq 'GET' )
+		{
+			my $init_object = { email => $c->user->email };
+
+			if ( my $dist = $c->req->params->{ distribution } )
+			{
+				$dist =~ s/-/::/g;
+				
+				$init_object->{ distribution } = $dist;
+			}
+			
+			$form->process( init_object => $init_object );
+		}
+		else
+		{	
+			$form->process( params => $c->request->params );
+	
+			if ( $form->validated )
+			{
+				# make sure it's valid
+
+				my $api = MetaCPAN::API->new;			
+
+				my $name = $form->field('distribution')->value;		
+				
+				$name =~ s/::/-/g;
+			
+				my $distribution;
+				
+				eval {
+					$c->log->trace( "Looking up " . $name );
+
+					$distribution = $api->release( distribution => $name );
+
+					$c->log->trace( "PACKAGE:" , $distribution );
+				};
+			
+				$c->log->warn( $@ );
+
+				if ( $@ )
+				{
+					$form->field('distribution')->add_error( "Unable to find that distribution" );
+				}
+				else
+				{
+					# first check if the dist is already in the db
+				
+					my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
+
+					$alert->abstract( $distribution->{ abstract } );
+					$alert->author(   $distribution->{ author }   );
+					$alert->version(  $distribution->{ version }  );
+					
+					$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
+					
+					$alert->update;
+				
+					my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
+	
+	
+					$user_alert->development( $form->field('development')->value );
+				
+					$user_alert->update;
+	
+	
+				
+					$c->log->trace("Redirecting to /monitor/list");
+				
+			 		$c->response->redirect( $c->uri_for( $self->action_for( '/monitor/list' ), { mid => $c->set_status_msg("alert added") } ) );
+			 		$c->detach;
+			 	}
+			}
+		}
+	}		
 
 	$c->stash( template => 'monitor/add.tt', form => $form );
 }
