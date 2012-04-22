@@ -4,8 +4,6 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use Log::Log4perl::Catalyst;
-
 use Log::AutoDump;
 
 # Set flags and add plugins for the application.
