@@ -12,13 +12,20 @@ __PACKAGE__->config(
 	TEMPLATE_EXTENSION => '.tt',
 	render_die => 1,
 	TIMER   => 1,
-	expose_methods => [ 'took' ],
+	expose_methods => [ 'format_date', 'took' ],
 	
 );
 
+sub format_date
+{
+	my ( $self, $c, $dt ) = @_;
+	
+	return $dt ? $dt->strftime( '%FT%TZ' ) : '';
+}
+
 sub took
 {
-	my ( $self, $c, $string ) = @_;
+	my ( $self, $c ) = @_;
 
 	if ( exists $c->stash->{ started } )
 	{
