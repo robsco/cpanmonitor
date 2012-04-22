@@ -29,7 +29,8 @@ requires 'Catalyst::Plugin::Session::State::Cookie';
 
 requires 'Catalyst::Plugin::StatusMessage';
 
-requires 'Log::Log4perl::Catalyst';
+requires 'Log::AutoDump';
+requires 'CatalystX::Controller::Auth';
 
 test_requires 'Test::More' => '0.88';
 
