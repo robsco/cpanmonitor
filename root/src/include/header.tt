@@ -7,7 +7,7 @@
 [% IF c.user_exists %]
 				<ul class="left">
 					<li class="first"><a href="[% c.uri_for('/') %]">Home</a></li>
-					<li><a href="[% c.uri_for( '/monitor/add' ) %]">Add</a></li>
+					<li><a href="[% c.uri_for( '/monitor/search' ) %]">Add</a></li>
 					
 				</ul>
 				

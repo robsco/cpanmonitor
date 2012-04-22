@@ -32,7 +32,7 @@
 [% FOREACH user_alert IN user_alerts %]
 				<tr>
 				
-					<td>[% user_alert.alert.distribution %]</td>
+					<td>[% user_alert.alert.distribution.replace('-', '::') %]</td>
 					<td>[% user_alert.alert.author %]</td>
 					<td>[% user_alert.alert.version %]</td>
 					<td>[% user_alert.development %]</td>

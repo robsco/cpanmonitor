@@ -3,6 +3,7 @@ package CPANMonitor::Controller::Monitor;
 use Moose;
 use namespace::autoclean;
 
+use CPANMonitor::Form::Search;
 use CPANMonitor::Form::Alert;
 
 use MetaCPAN::API;
@@ -62,6 +63,52 @@ sub list :Chained('base') :PathPart('list') :Args(0)
 
 	$c->stash( template => 'monitor/list.tt', user_alerts => \@user_alerts );
 }
+
+sub search :Chained('base') :PathPart('search') :Args(0)
+{
+	my ( $self, $c ) = @_;
+
+	$c->log->trace( "In Monitor->search");
+
+	my $form = CPANMonitor::Form::Search->new;
+
+	my @matches = ();
+	
+	if ( $c->req->param )
+	{
+		$form->process( params => $c->request->params );
+
+		if ( $form->validated )
+		{
+
+
+			my $mcpan = MetaCPAN::API->new;
+
+			my $search   = $mcpan->release( search => { q => $form->field('distribution')->value .' AND status:latest', fields => 'distribution,version' } );
+
+
+
+
+
+
+			@matches = map { $_->{ fields } } @{ $search->{ hits }->{ hits } };
+			
+
+
+
+
+
+		}
+	}		
+
+
+	$c->stash( template => 'monitor/search.tt', form => $form, matches => \@matches );
+}
+
+
+
+
+
 
 sub add :Chained('base') :PathPart('add') :Args(0)
 {

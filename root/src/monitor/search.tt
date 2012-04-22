@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>Monitoring</title>
+	   
+		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	
+	</head>
+
+	<body id="change-password">
+
+
+		[% INCLUDE 'include/header.tt' %]
+				
+		<div id="content">
+		
+			<h2>Search Distributions</h2>
+			
+[% IF form.has_errors %]
+			<p class="error">Some fields had errors:</p>
+					
+			<ul class="errors">
+	[% FOREACH msg IN form.errors %]
+				<li>[% msg | html %]</li>
+	[% END %]
+			</ul>
+[% END %]
+
+<form action="[% c.uri_for( '/monitor/search' ) %]" method="post">
+
+	[% form.field('distribution').render %]
+	
+	[% form.field('submit').render %]
+
+</form>
+
+
+[% FOREACH match = matches %]
+
+<a href="[% c.uri_for_action( '/monitor/add', [], { distribution = match.distribution, email = c.user.email } ) %]">[% match.distribution.replace('-', '::') %]</a>
+
+<br />
+
+[% END %]
+
+
+		</div>
+
+[% INCLUDE 'include/footer.tt' %]
+
+	</body>
+
+</html>
