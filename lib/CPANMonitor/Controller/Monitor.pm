@@ -84,7 +84,11 @@ sub search :Chained('base') :PathPart('search') :Args(0)
 
 			my $mcpan = MetaCPAN::API->new;
 
-			my $search   = $mcpan->release( search => { q => $form->field('distribution')->value .' AND status:latest', fields => 'distribution,version' } );
+			my $dist = $form->field('distribution')->value;
+			
+			$dist =~ s/::/-/g;
+			
+			my $search   = $mcpan->release( search => { q => $dist .' AND status:latest', fields => 'distribution,version' } );
 
 
 
