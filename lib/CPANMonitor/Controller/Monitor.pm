@@ -60,15 +60,6 @@ sub list :Chained('base') :PathPart('list') :Args(0)
 	$c->stash( template => 'monitor/list.tt', user_alerts => \@user_alerts );
 }
 
-sub rss :Chained( 'base' ) PathPart( 'rss' ) Args(0)
-{
-	my ( $self, $c ) = @_;
-
-	$c->log->trace( '' );
-
-	$c->stash( template => 'rss.tt' );
-}
-
 sub search :Chained('base') :PathPart('search') :Args(0)
 {
 	my ( $self, $c ) = @_;

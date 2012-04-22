@@ -21,33 +21,38 @@ CPANMonitor::Controller::Monitor - Catalyst Controller
 Catalyst Controller.
 
 =head1 METHODS
+=head1 METHODS
 
 =cut
 
-sub rss :Chained( '/' ) PathPart( 'rss' ) Args(0)
+sub rss :Chained( '/' ) PathPart( 'rss' ) Args(1)
 {
-	my ( $self, $c ) = @_;
+	my ( $self, $c, $user_id ) = @_;
 
 	$c->log->trace( '' );
 
-	$c->stash->{feed} = {
-    format      => 'RSS 1.0',
+	my @alerts = $c->model( 'DB::User' )->find( { id => $user_id } )->user_alerts->all;
+	
+	my @entries = ();
+
+	my $api = MetaCPAN::API->new;
+	
+	foreach my $alert ( @alerts )
+	{
+		#my $distribution = $api->release( distribution => $alert->alert->distribution );
+
+		push @entries, { title => $alert->alert->distribution };
+	}
+
+	#$c->log->trace( $api->fetch( 'release/_search?Moose' ) );
+
+	$c->stash->{feed} = { format      => 'RSS 2.0',
     id          => $c->req->base,
     title       => 'My Great Site',
     description => 'Kitten pictures for the masses',
     link        => $c->req->base,
     modified    => DateTime->now,
- 
-    entries => [
-        {
-            id       => $c->uri_for('rss', 'kitten_post')->as_string,
-            link     => $c->uri_for('rss', 'kitten_post')->as_string,
-            title    => 'First post!',
-            modified => DateTime->now,
-            content  => 'This is my first post!',
-        },
-        # ... more entries.
-    ],
+    entries => \@entries,
 };
 	
 	$c->forward('View::Feed');
