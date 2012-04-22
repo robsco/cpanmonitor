@@ -16,5 +16,15 @@ has_field submit => ( type         => 'Submit',
                       wrapper_attr => { id => 'field-submit', },
                     );
 
+sub html_attributes
+{
+	my ($self, $field, $type, $attr, $result) = @_;
+    
+	if( $type eq 'label' && $result->has_errors )
+	{
+		push @{$attr->{class}}, 'error';
+	}
+}
+
 1;
 
