@@ -12,27 +12,22 @@ __PACKAGE__->config(
 	TEMPLATE_EXTENSION => '.tt',
 	render_die => 1,
 	TIMER   => 1,
-	expose_methods => [ 'format_date', 'took' ],
+	expose_methods => [ 'format_fuzzy_date', 'took' ],
 	
 );
 
-sub format_date
+sub format_fuzzy_date
 {
 	my ( $self, $c, $dt ) = @_;
 	
-	return $dt ? $dt->strftime( '%FT%TZ' ) : '';
+	return $dt ? '<time datetime="' . $dt->strftime( '%FT%TZ' ) . '">' . $dt->strftime( '%d/%m/%y (%R)' ) . '</time>' : '';
 }
 
 sub took
 {
 	my ( $self, $c ) = @_;
 
-	if ( exists $c->stash->{ started } )
-	{
-		return sprintf( "%.5f", gettimeofday() - $c->stash->{ started } );
-	}
-	
-	return '-';
+	return exists $c->stash->{ started } ? sprintf( "%.5f", gettimeofday - $c->stash->{ started } ) : '-';
 }
 
 =head1 NAME
