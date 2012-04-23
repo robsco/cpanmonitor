@@ -55,7 +55,7 @@ sub list :Chained('base') :PathPart('list') :Args(0)
 
 	$c->log->trace( "In Monitor->list");
 
-	my @user_alerts = $c->user->user_alerts->all;
+	my @user_alerts = $c->user->user_alerts->search( {}, { join => 'alert', order_by => { -asc => 'alert.distribution' } } )->all;
 
 	$c->stash( template => 'monitor/list.tt', user_alerts => \@user_alerts );
 }
@@ -171,7 +171,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 					$alert->abstract( $distribution->{ abstract } );
 					$alert->author(   $distribution->{ author }   );
 					$alert->version(  $distribution->{ version }  );
-					$alert->released( $distribution->{ date }  );
+					$alert->released( $distribution->{ date }     );
 					
 					$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
 					
