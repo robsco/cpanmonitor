@@ -158,7 +158,6 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				
 					my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
 	
-	
 					$user_alert->development( $form->field('development')->value );
 				
 					$user_alert->update;
