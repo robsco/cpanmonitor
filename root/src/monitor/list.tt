@@ -1,24 +1,19 @@
 <!DOCTYPE HTML>
-<html>
 
+<html>
 	<head>
 		<title>Monitoring</title>
-	   
+
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss/2">
 		<link rel="stylesheet" href="/static/css/admin.css">
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 		<script src="/static/js/timeago.js"></script>
-		<script>
-			$(function()
-			{
-				$( 'time' ).timeago();
-			});		
-		</script>
+		<script src="/static/js/site.js"></script>
 	</head>
-
 	<body id="monitor">
-
-		[% INCLUDE 'include/header.tt' %]
+	
+[% INCLUDE 'include/header.tt' %]
 
 		<div id="content">
 		
@@ -45,16 +40,8 @@
 					<td>[% user_alert.development %]</td>
 					<td>[% user_alert.alert.abstract %]</td>
 					<td>[% user_alert.email %]</td>
-					<td>
-						<time datetime="[% user_alert.alert.checked.strftime( '%FT%TZ' ) %]">
-							[% format_date( user_alert.alert.checked ) %]
-						</time>
-					</td>
-					<td>
-						<time datetime="[% user_alert.alert.updated.strftime( '%FT%TZ' ) %]">
-							[% format_date( user_alert.alert.updated ) %]
-						</time>
-					</td>
+					<td>[% format_fuzzy_date( user_alert.alert.checked ) %]</td>
+					<td>[% format_fuzzy_date( user_alert.alert.updated ) %]</td>
 				</tr>
 [% END %]
 
@@ -65,5 +52,4 @@
 [% INCLUDE 'include/footer.tt' %]
 
 	</body>
-
 </html>
