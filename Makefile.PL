@@ -32,6 +32,7 @@ requires 'Catalyst::Plugin::StatusMessage';
 
 requires 'Log::AutoDump';
 requires 'CatalystX::Controller::Auth';
+requires 'Catalyst::View::XML::Feed';
 
 test_requires 'Test::More' => '0.88';
 
