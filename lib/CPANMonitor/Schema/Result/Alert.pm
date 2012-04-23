@@ -73,6 +73,12 @@ __PACKAGE__->table("alert");
   is_nullable: 0
   size: 255
 
+=head2 released
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  is_nullable: 0
+
 =head2 checked
 
   data_type: 'datetime'
@@ -103,6 +109,12 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 255 },
   "version",
   { data_type => "varchar", is_nullable => 0, size => 255 },
+  "released",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 0,
+  },
   "checked",
   {
     data_type => "datetime",
@@ -145,6 +157,21 @@ __PACKAGE__->add_unique_constraint("distribution", ["distribution"]);
 
 =head1 RELATIONS
 
+=head2 alert_histories
+
+Type: has_many
+
+Related object: L<CPANMonitor::Schema::Result::AlertHistory>
+
+=cut
+
+__PACKAGE__->has_many(
+  "alert_histories",
+  "CPANMonitor::Schema::Result::AlertHistory",
+  { "foreign.alert" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 user_alerts
 
 Type: has_many
@@ -161,8 +188,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-22 00:39:37
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aRvjOuO4s9gfOvdpmSmJgA
+# Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-23 19:04:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jSvE9oYT2kgP2vF93nWS8Q
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

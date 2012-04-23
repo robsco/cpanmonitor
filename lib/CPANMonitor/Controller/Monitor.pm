@@ -171,6 +171,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 					$alert->abstract( $distribution->{ abstract } );
 					$alert->author(   $distribution->{ author }   );
 					$alert->version(  $distribution->{ version }  );
+					$alert->released( $distribution->{ date }  );
 					
 					$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
 					

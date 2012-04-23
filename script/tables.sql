@@ -1,4 +1,5 @@
 
+drop table if exists alert_history;
 drop table if exists user_alert;
 drop table if exists alert;
 
@@ -70,6 +71,7 @@ create table alert
     abstract   varchar(255)   not null,
     author   varchar(255)  not null,
     version   varchar(255)   not null,
+    released    datetime   not null,
      checked   datetime   not null,    
     updated    datetime    not null,
 
@@ -101,7 +103,20 @@ alter table user_alert add unique index user_alert_email (user, alert, email);
 
 
 
+create table alert_history
+(
+    id    int   unsigned    not null      auto_increment,
+    alert  int   unsigned   not null,
+    version   varchar(255)   not null,
+    released    datetime   not null,
 
+
+
+    primary key ( id ),
+
+    foreign key (alert) references alert(id) on delete cascade on update cascade   
+
+) ENGINE=InnoDB default charset=utf8;
 
 
 

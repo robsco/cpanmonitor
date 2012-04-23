@@ -24,6 +24,7 @@
 					<th>Distribution</th>
 					<th>Author</th>
 					<th>Version</th>
+					<th>Released</th>
 					<th>Dev</th>
 					<th>Abstract</th>
 					<th>Send To</th>
@@ -37,6 +38,7 @@
 					<td>[% user_alert.alert.distribution.replace('-', '::') %]</td>
 					<td>[% user_alert.alert.author %]</td>
 					<td>[% user_alert.alert.version %]</td>
+					<td>[% format_fuzzy_date( user_alert.alert.released ) %]</td>
 					<td>[% user_alert.development %]</td>
 					<td>[% user_alert.alert.abstract %]</td>
 					<td>[% user_alert.email %]</td>
