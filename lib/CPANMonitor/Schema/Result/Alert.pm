@@ -191,6 +191,42 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-23 19:04:20
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jSvE9oYT2kgP2vF93nWS8Q
 
+use MetaCPAN::API;
+
+sub update_from_api
+{
+	my $self = shift;
+
+	my $api = MetaCPAN::API->new;
+	
+	eval {
+		my $nice_dist = $self->distribution;
+		
+		$nice_dist =~ s/::/-/g;
+		
+		my $distribution = $api->release( distribution => $nice_dist );
+
+		$self->checked( DateTime->now( time_zone => 'Europe/London' ) );
+
+		if ( $self->version ne $distribution->{ version } )
+		{
+			# copy to history
+			
+			$self->alert_histories->create( { alert => $self->id, version => $self->version, released => $self->released } );
+			
+			$self->abstract( $distribution->{ abstract } );
+			$self->author(   $distribution->{ author }   );
+			$self->version(  $distribution->{ version }  );
+			$self->released( $distribution->{ date }     );
+		}
+		
+		$self->update;
+	};
+	
+	warn $@ if $@;
+
+	return $self;
+}
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

@@ -76,8 +76,6 @@ sub search :Chained('base') :PathPart('search') :Args(0)
 
 		if ( $form->validated )
 		{
-
-
 			my $mcpan = MetaCPAN::API->new;
 
 			my $dist = $form->field('distribution')->value;
@@ -86,21 +84,9 @@ sub search :Chained('base') :PathPart('search') :Args(0)
 			
 			my $search   = $mcpan->release( search => { q => $dist .' AND status:latest', fields => 'distribution,version' } );
 
-
-
-
-
-
 			@matches = map { $_->{ fields } } @{ $search->{ hits }->{ hits } };
-			
-
-
-
-
-
 		}
 	}		
-
 
 	$c->stash( template => 'monitor/search.tt', form => $form, matches => \@matches );
 }
@@ -140,7 +126,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 			{
 				# make sure it's valid
 
-				my $api = MetaCPAN::API->new;			
+				my $api = MetaCPAN::API->new;
 
 				my $name = $form->field('distribution')->value;		
 				
@@ -168,14 +154,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				
 					my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
 
-					$alert->abstract( $distribution->{ abstract } );
-					$alert->author(   $distribution->{ author }   );
-					$alert->version(  $distribution->{ version }  );
-					$alert->released( $distribution->{ date }     );
-					
-					$alert->checked( DateTime->now( time_zone => 'Europe/London' ) );
-					
-					$alert->update;
+					$alert->update_from_api;
 				
 					my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
 	
