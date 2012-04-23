@@ -150,8 +150,6 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				}
 				else
 				{
-					# first check if the dist is already in the db
-				
 					my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
 
 					$alert->update_from_api;
@@ -161,9 +159,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 					$user_alert->development( $form->field('development')->value );
 				
 					$user_alert->update;
-	
-	
-				
+
 					$c->log->trace("Redirecting to /monitor/list");
 				
 			 		$c->response->redirect( $c->uri_for( $self->action_for( '/monitor/list' ), { mid => $c->set_status_msg("alert added") } ) );

@@ -208,17 +208,17 @@ sub update_from_api
 
 		$self->checked( DateTime->now( time_zone => 'Europe/London' ) );
 
-		if ( $self->version ne $distribution->{ version } )
+		if ( $self->version && $self->version ne $distribution->{ version } )
 		{
 			# copy to history
 			
 			$self->alert_histories->create( { alert => $self->id, version => $self->version, released => $self->released } );
-			
-			$self->abstract( $distribution->{ abstract } );
-			$self->author(   $distribution->{ author }   );
-			$self->version(  $distribution->{ version }  );
-			$self->released( $distribution->{ date }     );
 		}
+		
+		$self->abstract( $distribution->{ abstract } );
+		$self->author(   $distribution->{ author }   );
+		$self->version(  $distribution->{ version }  );
+		$self->released( $distribution->{ date }     );
 		
 		$self->update;
 	};
