@@ -18,6 +18,7 @@ requires 'namespace::autoclean';
 requires 'Config::General'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 
+
 requires 'StackTrace';
 
 requires 'Catalyst::Plugin::Authentication';
@@ -31,6 +32,7 @@ requires 'Catalyst::Plugin::StatusMessage';
 
 requires 'Log::AutoDump';
 requires 'CatalystX::Controller::Auth';
+requires 'Catalyst::View::XML::Feed';
 
 test_requires 'Test::More' => '0.88';
 

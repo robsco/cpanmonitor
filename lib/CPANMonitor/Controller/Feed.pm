@@ -25,7 +25,7 @@ Catalyst Controller.
 
 =cut
 
-sub rss :Chained( '/' ) PathPart( 'rss' ) Args(1)
+sub rss :Chained( '/base' ) PathPart( 'rss' ) Args(1)
 {
 	my ( $self, $c, $user_id ) = @_;
 
