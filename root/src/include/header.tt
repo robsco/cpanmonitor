@@ -6,7 +6,7 @@
 				<ul class="left">
 					<li class="first"><a href="[% c.uri_for('/') %]">Home</a></li>
 					<li><a href="[% c.uri_for( '/monitor/search' ) %]">Add</a></li>
-					<li><a href="[% c.uri_for( '/rss/' _ c.user.id ) %]">RSS</a></li>
+					<li><a href="[% c.uri_for_action( '/feed/rss', [ c.user.id ] ) %]">RSS</a></li>
 				</ul>
 				
 				<ul class="right">
