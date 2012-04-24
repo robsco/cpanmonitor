@@ -152,7 +152,7 @@ sub add :Chained('base') :PathPart('add') :Args(0)
 				{
 					my $alert = $c->model('DB::Alert')->find_or_create( { distribution => $form->field('distribution')->value }, { key => 'distribution' } );
 
-					$alert->update_from_api;
+					$alert->update_with_distribution( $distribution );
 				
 					my $user_alert = $c->model('DB::UserAlert')->find_or_create( { user => $c->user->id, alert => $alert->id, email => $form->field('email')->value }, { key => 'user_alert_email' } );
 	

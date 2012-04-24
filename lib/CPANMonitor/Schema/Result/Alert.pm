@@ -209,8 +209,6 @@ sub update_from_api
 		
 		my $distribution = $api->release( distribution => $nice_dist );
 
-		$self->checked( DateTime->now( time_zone => 'Europe/London' ) );
-
 		if ( $self->version ne $distribution->{ version } )
 		{
 			# copy to history
@@ -219,25 +217,19 @@ sub update_from_api
 			
 			$self->updated( DateTime->now( time_zone => 'Europe/London' ) );
 
-			$self->abstract( $distribution->{ abstract } );
-			$self->author(   $distribution->{ author }   );
-			$self->version(  $distribution->{ version }  );
-			
-			$self->released( DateTime::Format::RFC3339->parse_datetime( $distribution->{ date }.'Z' ) );
-
-			$self->update;
-			
 			# send the email
 			
 			foreach my $user_alert ( $self->user_alerts )
 			{
 				my $kit = Email::MIME::Kit->new( { source => 'mkits/alert.mkit' } );
  
-				my $email = $kit->assemble( { alert => $self } );
+				my $email = $kit->assemble( { distribution => $distribution } );
 
 				sendmail( $email, { to => [ $user_alert->email ] } );
 			}
 		}
+
+		$self->update_with_distribution( $distribution );
 	};
 	
 	warn $@ if $@;
@@ -245,6 +237,22 @@ sub update_from_api
 	return $self;
 }
 
+sub update_with_distribution
+{
+	my ( $self, $distribution ) = @_;
+	
+	$self->abstract( $distribution->{ abstract } );
+	$self->author(   $distribution->{ author }   );
+	$self->version(  $distribution->{ version }  );
+			
+	$self->released( DateTime::Format::RFC3339->parse_datetime( $distribution->{ date }.'Z' ) );
+	
+	$self->checked( DateTime->now( time_zone => 'Europe/London' ) );
+
+	$self->update;
+
+	return $self;
+}
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;

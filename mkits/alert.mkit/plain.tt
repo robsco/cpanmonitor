@@ -1,8 +1,8 @@
 Hi,
 
-Version [% alert.version %] of [% alert.distribution %] was released on [% alert.released.strftime('%e/%m/%Y at %H:%M') %].
+Version [% distribution.version %] of [% distribution.distribution.replace('-', '::') %] was released on [% distribution.date %].
 
-"[% alert.abstract %]"
+"[% distribution.abstract %]"
 
 
 Time to get updating!

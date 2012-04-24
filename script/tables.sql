@@ -37,8 +37,6 @@ primary key (id),
 unique index email_idx (email)
 ) ENGINE=InnoDB default charset=utf8;
 
-insert into user (email) values ('rob@intelcompute.com');
-
 
 
 
@@ -53,9 +51,6 @@ CREATE TABLE user_role
   foreign key (user) references user(id) on delete cascade on update cascade,	
   foreign key (role) references role(id) on delete cascade on update cascade
 ) ENGINE=InnoDB default charset=utf8;
-
-insert into user_role (user, role) values (1, 1);
-insert into user_role (user, role) values (1, 2);
 
 
 
