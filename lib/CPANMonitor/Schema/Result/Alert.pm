@@ -191,6 +191,8 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07015 @ 2012-04-23 19:04:20
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jSvE9oYT2kgP2vF93nWS8Q
 
+use Email::MIME::Kit;
+use Email::Sender::Simple qw(sendmail);
 use MetaCPAN::API;
 
 sub update_from_api
@@ -213,14 +215,27 @@ sub update_from_api
 			# copy to history
 			
 			$self->alert_histories->create( { alert => $self->id, version => $self->version, released => $self->released } );
+			
+			$self->updated( DateTime->now( time_zone => 'Europe/London' ) );
+		
+			$self->abstract( $distribution->{ abstract } );
+			$self->author(   $distribution->{ author }   );
+			$self->version(  $distribution->{ version }  );
+			$self->released( $distribution->{ date }     );
+		
+			$self->update;
+			
+			# send the email
+			
+			foreach my $user_alert ( $self->user_alerts )
+			{
+				my $kit = Email::MIME::Kit->new({ source => 'mkits/alert.mkit' });
+ 
+				my $email = $kit->assemble( { alert => $self } );
+
+				sendmail( $email, { to => [ $user_alert->email ] } );
+			}
 		}
-		
-		$self->abstract( $distribution->{ abstract } );
-		$self->author(   $distribution->{ author }   );
-		$self->version(  $distribution->{ version }  );
-		$self->released( $distribution->{ date }     );
-		
-		$self->update;
 	};
 	
 	warn $@ if $@;

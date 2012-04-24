@@ -33,6 +33,8 @@ requires 'Catalyst::Plugin::StatusMessage';
 requires 'Log::AutoDump';
 requires 'CatalystX::Controller::Auth';
 requires 'Catalyst::View::XML::Feed';
+requires 'Email::MIME::Kit';
+requires 'Email::MIME::Kit::Renderer::TT';
 
 test_requires 'Test::More' => '0.88';
 
