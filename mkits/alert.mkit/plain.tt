@@ -1,9 +1,10 @@
 Hi,
 
-Version [% distribution.version %] of [% distribution.distribution.replace('-', '::') %] was released on [% distribution.date %].
+Version [% alert.version %] of [% alert.distribution.replace('-', '::') %] was released on [% alert.date %].
 
-"[% distribution.abstract %]"
+"[% alert.abstract %]"
 
+woo
 
 Time to get updating!
 

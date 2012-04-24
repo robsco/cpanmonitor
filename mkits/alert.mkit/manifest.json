@@ -2,7 +2,7 @@
   "renderer": "TT",
   "header": [
     { "From": "CPAN Monitor <alert@cpanmonitor.org>" },
-    { "Subject": "CPAN Update: [% alert.distribution %] [% alert.version %]" }
+    { "Subject": "CPAN Update: [% alert.distribution.replace('-', '::') %] [% alert.version %]" }
   ],
   "alternatives": [
     { "type": "text/plain", "path": "plain.tt" }

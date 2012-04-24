@@ -222,8 +222,7 @@ sub update_from_api
 			foreach my $user_alert ( $self->user_alerts )
 			{
 				my $kit = Email::MIME::Kit->new( { source => 'mkits/alert.mkit' } );
- 
-				my $email = $kit->assemble( { distribution => $distribution } );
+ 				my $email = $kit->assemble( { alert => $distribution } );
 
 				sendmail( $email, { to => [ $user_alert->email ] } );
 			}
@@ -231,7 +230,7 @@ sub update_from_api
 
 		$self->update_with_distribution( $distribution );
 	};
-	
+
 	warn $@ if $@;
 
 	return $self;
