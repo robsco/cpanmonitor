@@ -1,1 +1,13 @@
-it's ben updated!!
+Hi,
+
+Version [% alert.version %] of [% alert.distribution %] was released on [% alert.released.strftime('%e/%m/%Y at %H:%M') %].
+
+"[% alert.abstract %]"
+
+
+Time to get updating!
+
+--
+
+The CPAN Monitor Team
+

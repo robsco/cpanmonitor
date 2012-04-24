@@ -194,6 +194,7 @@ __PACKAGE__->has_many(
 use Email::MIME::Kit;
 use Email::Sender::Simple qw(sendmail);
 use MetaCPAN::API;
+use DateTime::Format::RFC3339;
 
 sub update_from_api
 {
@@ -210,26 +211,27 @@ sub update_from_api
 
 		$self->checked( DateTime->now( time_zone => 'Europe/London' ) );
 
-		if ( $self->version && $self->version ne $distribution->{ version } )
+		if ( $self->version ne $distribution->{ version } )
 		{
 			# copy to history
 			
 			$self->alert_histories->create( { alert => $self->id, version => $self->version, released => $self->released } );
 			
 			$self->updated( DateTime->now( time_zone => 'Europe/London' ) );
-		
+
 			$self->abstract( $distribution->{ abstract } );
 			$self->author(   $distribution->{ author }   );
 			$self->version(  $distribution->{ version }  );
-			$self->released( $distribution->{ date }     );
-		
+			
+			$self->released( DateTime::Format::RFC3339->parse_datetime( $distribution->{ date }.'Z' ) );
+
 			$self->update;
 			
 			# send the email
 			
 			foreach my $user_alert ( $self->user_alerts )
 			{
-				my $kit = Email::MIME::Kit->new({ source => 'mkits/alert.mkit' });
+				my $kit = Email::MIME::Kit->new( { source => 'mkits/alert.mkit' } );
  
 				my $email = $kit->assemble( { alert => $self } );
 

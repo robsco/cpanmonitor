@@ -5,10 +5,6 @@
     { "Subject": "CPAN Update: [% alert.distribution %] [% alert.version %]" }
   ],
   "alternatives": [
-    { "type": "text/plain", "path": "plain.tt" },
-    {
-      "type": "text/html",
-      "path": "html.tt"
-    }
+    { "type": "text/plain", "path": "plain.tt" }
   ]
 }
