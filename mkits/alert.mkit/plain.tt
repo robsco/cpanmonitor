@@ -4,7 +4,6 @@ Version [% alert.version %] of [% alert.distribution.replace('-', '::') %] was r
 
 "[% alert.abstract %]"
 
-woo
 
 Time to get updating!
 
