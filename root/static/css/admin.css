@@ -60,7 +60,24 @@ nav li
 }
 
 
+body#index div.content
+{
+	margin-left: 10px;
+}
 
+
+body#index p
+{
+	margin-bottom: 15px;	
+	
+}
+
+body#index div.content ul
+{
+	margin-bottom: 10px;
+	list-style-type: disc;
+	margin-left: 20px;
+}
 
 
 
@@ -478,6 +495,13 @@ body#change-password p#cancel-password-change
 	margin-left: 130px;
 	margin-top: 10px;
 }
+
+
+
+
+
+
+
 
 
 

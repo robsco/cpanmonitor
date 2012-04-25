@@ -14,8 +14,13 @@
 					<li><a href="[% c.uri_for_action('/auth/logout') %]">Logout</a></li>
 					<li>[% c.user.email %]</li>
 				</ul>
-				
-				<div class="clearBoth"></div>
+[% ELSE %]
+				<ul class="left">
+					<li><a href="[% c.uri_for_action('/auth/register') %]">Register</a></li>
+					<li><a href="[% c.uri_for_action('/auth/login' ) %]">Login</a></li>
+				</ul>
 [% END %]
+				<div class="clearBoth"></div>
+
 			</nav>
 		</header>
