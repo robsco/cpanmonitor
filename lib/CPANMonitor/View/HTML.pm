@@ -10,8 +10,7 @@ use Time::HiRes qw( gettimeofday );
 __PACKAGE__->config(
 
 	TEMPLATE_EXTENSION => '.tt',
-	render_die => 1,
-	TIMER   => 1,
+	render_die => 1,thanks
 	expose_methods => [ 'format_fuzzy_date', 'took' ],
 	
 );
