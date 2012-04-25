@@ -10,3 +10,15 @@ Compilation failed in require at /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-t
 	Catalyst::ScriptRole::_run_application('Catalyst::Script::FastCGI=HASH(0x17c5cc20)') called at /usr/lib/perl5/site_perl/5.8.8/Catalyst/ScriptRole.pm line 61
 	Catalyst::ScriptRole::run('Catalyst::Script::FastCGI=HASH(0x17c5cc20)') called at /usr/lib/perl5/site_perl/5.8.8/Catalyst/ScriptRunner.pm line 50
 	Catalyst::ScriptRunner::run('Catalyst::ScriptRunner', 'CPANMonitor', 'FastCGI') called at /home/rob/www.cpanmonitor.org/live/script/cpanmonitor_fastcgi.pl line 4
+Couldn't load class (CPANMonitor) because: syntax error at /home/rob/www.cpanmonitor.org/live/script/../lib/CPANMonitor/View/HTML.pm line 14, near "thanks
+	expose_methods"
+Compilation failed in require at /usr/lib/perl5/site_perl/5.8.8/Catalyst/Utils.pm line 294.
+Compilation failed in require at /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-thread-multi/Class/MOP.pm line 117.
+ at /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-thread-multi/Class/MOP.pm line 123
+	Class::MOP::__ANON__('syntax error at /home/rob/www.cpanmonitor.org/live/script/../...') called at /usr/lib/perl5/site_perl/5.8.8/Try/Tiny.pm line 100
+	Try::Tiny::try('CODE(0x88b2b90)', 'Try::Tiny::Catch=REF(0x99a1df0)') called at /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-thread-multi/Class/MOP.pm line 128
+	Class::MOP::load_first_existing_class('CPANMonitor') called at /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-thread-multi/Class/MOP.pm line 140
+	Class::MOP::load_class('CPANMonitor') called at /usr/lib/perl5/site_perl/5.8.8/Catalyst/ScriptRole.pm line 83
+	Catalyst::ScriptRole::_run_application('Catalyst::Script::FastCGI=HASH(0x998af10)') called at /usr/lib/perl5/site_perl/5.8.8/Catalyst/ScriptRole.pm line 61
+	Catalyst::ScriptRole::run('Catalyst::Script::FastCGI=HASH(0x998af10)') called at /usr/lib/perl5/site_perl/5.8.8/Catalyst/ScriptRunner.pm line 50
+	Catalyst::ScriptRunner::run('Catalyst::ScriptRunner', 'CPANMonitor', 'FastCGI') called at /home/rob/www.cpanmonitor.org/live/script/cpanmonitor_fastcgi.pl line 4
