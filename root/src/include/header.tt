@@ -1,5 +1,5 @@
 		<header>
-			<h1>CPAN Monitor</h1>
+			<a href="/"><h1>CPAN Monitor</h1></a>
 
 			<nav>
 [% IF c.user_exists %]

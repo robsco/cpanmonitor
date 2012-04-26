@@ -5,6 +5,7 @@
 		<title>CPAN Monitor</title>
 		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="Monitor CPAN modules and distributions for updates and releases." />
 	
 	</head>
 
@@ -22,7 +23,7 @@
 			
 				<p><a href="[% c.uri_for_action('/auth/register') %]">Register</a> or <a href="[% c.uri_for_action('/auth/login') %]">login</a> here.</p>
 			
-				<p>This is very much still in Alpha phase.</p>			
+				<p>This is very much still in Alpha phase.  Send all comments/suggestions to <a href="mailto:comments@cpanmonitor.org">comments@cpanmonitor.org</a>.</p>			
 			
 			</div>
 			
@@ -31,8 +32,8 @@
 			<div class="content">
 						
 				<ul>
-					<li>RSS, Atom, RDF feedsM</li>
-					<li>Import csv, spreadsheets, etc.</li>
+					<li>RSS, Atom, RDF feeds</li>
+					<li>Import lists via csv, spreadsheets, etc.</li>
 				</ul>
 			 
 			 
