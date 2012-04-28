@@ -23,6 +23,7 @@ requires 'StackTrace';
 
 requires 'Catalyst::Plugin::Authentication';
 requires 'Catalyst::Plugin::Authorization::Roles';
+requires 'Catalyst::Plugin::SanitizeUrl';
 
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::Store::File';
