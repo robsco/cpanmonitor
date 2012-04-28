@@ -33,6 +33,8 @@ use Catalyst qw/
     Session::State::Cookie
     
     StatusMessage
+    
+    SmartURI
 /;
 
 extends 'Catalyst';
