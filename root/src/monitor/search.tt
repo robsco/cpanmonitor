@@ -50,6 +50,11 @@
 
 [% INCLUDE 'include/footer.tt' %]
 
+		<script type="text/javascript">
+			document.getElementById('distribution').focus();
+			document.getElementById('distribution').setSelectionRange(0,0);
+		</script>
+		
 	</body>
 
 </html>

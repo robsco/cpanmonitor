@@ -46,10 +46,12 @@ sub index :Chained('base') :PathPart('') :Args(0)
 
 	$c->log->trace( "In Root->index");
 
-	$c->log->debug("Homepage request redirecting to /monitor/index");
+	$c->stash( template => 'index.tt' );
+
+#	$c->log->debug("Homepage request redirecting to /monitor/index");
 	
-	$c->response->redirect( $c->uri_for_action( '/monitor/index' ) );
-	$c->detach;
+#	$c->response->redirect( $c->uri_for_action( '/monitor/index' ) );
+#	$c->detach;
 }
 
 =head2 default

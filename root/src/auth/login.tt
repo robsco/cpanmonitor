@@ -11,6 +11,8 @@
 
 	<body id="login">
 
+		[% INCLUDE 'include/header.tt' %]
+		
 		<div id="content">
 		
 			<h2>CPAN Monitor Login</h2>

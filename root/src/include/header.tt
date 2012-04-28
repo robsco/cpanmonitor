@@ -1,5 +1,5 @@
 		<header>
-			<h1>CPAN Monitor</h1>
+			<a href="/"><h1>CPAN Monitor</h1></a>
 
 			<nav>
 [% IF c.user_exists %]
@@ -14,8 +14,13 @@
 					<li><a href="[% c.uri_for_action('/auth/logout').hostless %]">Logout</a></li>
 					<li>[% c.user.email %]</li>
 				</ul>
-				
-				<div class="clearBoth"></div>
+[% ELSE %]
+				<ul class="left">
+					<li><a href="[% c.uri_for_action('/auth/register') %]">Register</a></li>
+					<li><a href="[% c.uri_for_action('/auth/login' ) %]">Login</a></li>
+				</ul>
 [% END %]
+				<div class="clearBoth"></div>
+
 			</nav>
 		</header>

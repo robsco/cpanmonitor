@@ -82,9 +82,17 @@ sub search :Chained('base') :PathPart('search') :Args(0)
 			
 			$dist =~ s/::/-/g;
 			
-			my $search   = $mcpan->release( search => { q => $dist .' AND status:latest', fields => 'distribution,version' } );
+			my $search   = $mcpan->release( search => { q => $dist .' AND status:latest', fields => 'distribution,version', size => 500 } );
 
 			@matches = map { $_->{ fields } } @{ $search->{ hits }->{ hits } };
+			
+			@matches = sort { length( $a->{ distribution } ) <=> length( $b->{ distribution } )
+			                  ||      $a->{ distribution }   cmp         $b->{ distribution } 
+			                }
+			           grep {         $_->{ distribution } =~ /^$dist/i          }
+			           @matches;			
+			
+			@matches = splice( @matches, 0, 10 );
 		}
 	}		
 

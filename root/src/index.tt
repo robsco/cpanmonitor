@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>CPAN Monitor</title>
+		<link type="text/css" rel="stylesheet" media="screen" href="/static/css/admin.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="Monitor CPAN modules and distributions for updates and releases." />
+	
+	</head>
+
+	<body id="index">
+
+		[% INCLUDE 'include/header.tt' %]
+				
+		<div id="content">
+		
+			<h2>Welcome</h2>
+			
+			<div class="content">
+			
+				<p><strong>CPAN Monitor</strong> is a web service to send alerts when specific CPAN modules are updated.</p>
+			
+				<p><a href="[% c.uri_for_action('/auth/register') %]">Register</a> or <a href="[% c.uri_for_action('/auth/login') %]">login</a> here.</p>
+			
+				<p>This is very much still in Alpha phase.  Send all comments/suggestions to <a href="mailto:comments@cpanmonitor.org">comments@cpanmonitor.org</a>.</p>			
+			
+			</div>
+			
+			<h3>TODO:</h3>
+
+			<div class="content">
+						
+				<ul>
+					<li>RSS, Atom, RDF feeds</li>
+					<li>Import lists via csv, spreadsheets, etc.</li>
+				</ul>
+			 
+			 
+			</div>			
+			
+
+
+		</div>
+
+[% INCLUDE 'include/footer.tt' %]
+
+	</body>
+
+</html>
+

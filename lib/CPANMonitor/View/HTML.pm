@@ -11,7 +11,6 @@ __PACKAGE__->config(
 
 	TEMPLATE_EXTENSION => '.tt',
 	render_die => 1,
-	TIMER   => 1,
 	expose_methods => [ 'format_fuzzy_date', 'took' ],
 	
 );
