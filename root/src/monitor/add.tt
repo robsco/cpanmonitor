@@ -27,7 +27,7 @@
 			</ul>
 [% END %]
 
-<form action="[% c.uri_for( '/monitor/add' ) %]" method="post">
+<form action="[% c.uri_for_action( '/monitor/add' ).hostless %]" method="post">
 
 	[% form.field('distribution').render %]
 	

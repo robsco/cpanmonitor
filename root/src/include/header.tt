@@ -4,14 +4,14 @@
 			<nav>
 [% IF c.user_exists %]
 				<ul class="left">
-					<li class="first"><a href="[% c.uri_for('/monitor/') %]">Home</a></li>
-					<li><a href="[% c.uri_for_action( '/monitor/search' ) %]">Add</a></li>
-					<li><a href="[% c.uri_for_action( '/feed/rss', [ c.user.id ] ) %]">RSS</a></li>
+					<li class="first"><a href="[% c.uri_for_action('/index').hostless %]">Home</a></li>
+					<li><a href="[% c.uri_for_action( '/monitor/search' ).hostless %]">Add</a></li>
+					<li><a href="[% c.uri_for_action( '/feed/rss', [ c.user.id ] ).hostless %]">RSS</a></li>
 				</ul>
 				
 				<ul class="right">
-					<li><a href="[% c.uri_for_action('/auth/change_password', [ c.user.id ] ) %]">Change Password</a></li>
-					<li><a href="[% c.uri_for_action('/auth/logout') %]">Logout</a></li>
+					<li><a href="[% c.uri_for_action('/auth/change_password', [ c.user.id ] ).hostless %]">Change Password</a></li>
+					<li><a href="[% c.uri_for_action('/auth/logout').hostless %]">Logout</a></li>
 					<li>[% c.user.email %]</li>
 				</ul>
 [% ELSE %]

@@ -30,6 +30,7 @@ requires 'Catalyst::Plugin::Session::Store::File';
 requires 'Catalyst::Plugin::Session::State::Cookie';
 
 requires 'Catalyst::Plugin::StatusMessage';
+requires 'Catalyst::Plugin::SmartURI';
 
 requires 'Log::AutoDump';
 requires 'CatalystX::Controller::Auth';

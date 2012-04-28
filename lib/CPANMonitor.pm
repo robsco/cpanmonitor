@@ -34,8 +34,7 @@ use Catalyst qw/
     
     StatusMessage
     
-
-    
+    SmartURI
 /;
 
 extends 'Catalyst';

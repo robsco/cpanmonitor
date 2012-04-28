@@ -19,7 +19,7 @@
 
 [% INCLUDE 'auth/include/messages.tt' %]
 
-			<form method="post" action="[% c.uri_for_action('/auth/register') | html %]" autocomplete="off">
+			<form method="post" action="[% c.uri_for_action('/auth/register').hostless | html %]" autocomplete="off">
 
 			[% form.field('email').render %]
 			
@@ -31,7 +31,7 @@
 
 			</form>
 
-			<p id="login"><a href="[% c.uri_for_action('/auth/login') %]">back to login</a></p>
+			<p id="login"><a href="[% c.uri_for_action('/auth/login').hostless %]">back to login</a></p>
 
 		</div>
 

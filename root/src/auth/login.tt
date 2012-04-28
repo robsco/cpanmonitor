@@ -19,7 +19,7 @@
 
 [% INCLUDE 'auth/include/messages.tt' %]
 
-			<form method="post" action="[% c.uri_for_action('/auth/login') | html %]" autocomplete="off">
+			<form method="post" action="[% c.uri_for_action('/auth/login').hostless | html %]" autocomplete="off">
 
 			[% form.field('email').render %]
 			
@@ -29,8 +29,8 @@
 
 			</form>
 
-			<p id="forgot-password"><a href="[% c.uri_for_action('/auth/forgot_password') %]">I've forgot my password</a></p>
-			<p id="register"><a href="[% c.uri_for_action('/auth/register') %]">Register</a></p>
+			<p id="forgot-password"><a href="[% c.uri_for_action('/auth/forgot_password').hostless %]">I've forgot my password</a></p>
+			<p id="register"><a href="[% c.uri_for_action('/auth/register').hostless %]">Register</a></p>
 
 		</div>
 
