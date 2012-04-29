@@ -14,42 +14,26 @@
 		[% INCLUDE 'include/header.tt' %]
 				
 		<div id="content">
-		
+
 			<h2>Welcome</h2>
-			
-			<div class="content">
-			
-				<p><strong>CPAN Monitor</strong> is a web service to send alerts when specific CPAN modules are updated.</p>
-			
-				<p><a href="[% c.uri_for_action('/auth/register') %]">Register</a> or <a href="[% c.uri_for_action('/auth/login') %]">login</a> here.</p>
-			
-				<p>This is very much still in Alpha phase.  Send all comments/suggestions to <a href="mailto:comments@cpanmonitor.org">comments@cpanmonitor.org</a>.</p>			
-			
-			</div>
-			
+		
+			<p><strong>CPAN Monitor</strong> is a web service to send alerts when specific CPAN modules are updated.</p>
+		
+			<p><a href="[% c.uri_for_action('/auth/register') %]">Register</a> or <a href="[% c.uri_for_action('/auth/login') %]">login</a> here.</p>
+		
+			<p>This is very much still in Alpha phase.  Send all comments/suggestions to <a href="mailto:comments@cpanmonitor.org">comments@cpanmonitor.org</a>.</p>			
+		
 			<h3>Stats</h3>
-			
-			<div class="content">
-	
-				<p>[% num_users %] total users, monitoring a total of [% num_alerts %] distributions.</p>			
+		
+			<p>[% num_users %] total users, monitoring a total of [% num_alerts %] distributions.</p>			
 
-
-			</div>			
-			
 			<h3>TODO:</h3>
 
-			<div class="content">
-						
-				<ul>
-					<li>RSS, Atom, RDF feeds</li>
-					<li>Import lists via csv, spreadsheets, etc.</li>
-				</ul>
-			 
-			 
-			</div>			
-			
-
-
+			<ul>
+				<li>RSS, Atom, RDF feeds</li>
+				<li>Import lists via csv, spreadsheets, etc.</li>
+			</ul>
+	
 		</div>
 
 [% INCLUDE 'include/footer.tt' %]

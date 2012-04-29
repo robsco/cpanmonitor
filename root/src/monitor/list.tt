@@ -11,11 +11,12 @@
 		<script src="/static/js/timeago.js"></script>
 		<script src="/static/js/site.js"></script>
 	</head>
-	<body id="monitor">
+	
+	<body id="list">
 	
 [% INCLUDE 'include/header.tt' %]
 
-		<div id="content">
+		<div id="content">	
 		
 			<h2>Monitor</h2>
 
