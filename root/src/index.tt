@@ -27,6 +27,15 @@
 			
 			</div>
 			
+			<h3>Stats</h3>
+			
+			<div class="content">
+	
+				<p>[% num_users %] total users, monitoring a total of [% num_alerts %] distributions.</p>			
+
+
+			</div>			
+			
 			<h3>TODO:</h3>
 
 			<div class="content">

@@ -46,7 +46,13 @@ sub index :Chained('base') :PathPart('') :Args(0)
 
 	$c->log->trace( "In Root->index");
 
-	$c->stash( template => 'index.tt' );
+
+	my $num_users = $c->model('DB::User')->count;
+	my $num_alerts = $c->model('DB::Alert')->count;
+
+
+
+	$c->stash( template => 'index.tt', num_users => $num_users, num_alerts => $num_alerts );
 
 #	$c->log->debug("Homepage request redirecting to /monitor/index");
 	
