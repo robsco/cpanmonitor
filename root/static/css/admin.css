@@ -60,9 +60,10 @@ nav li
 }
 
 
-body#index div.content
+body#index #content
 {
 	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 
@@ -82,6 +83,11 @@ body#index div.content ul
 
 
 
+body#list #content
+{
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
 
 
 
