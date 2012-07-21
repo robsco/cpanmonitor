@@ -3,9 +3,9 @@
 APP_NAME=cpanmonitor
 APP_PATH=/home/rob/www.cpanmonitor.org/live
 APP_USER=rob
-SOCKET_FILE=$APP_PATH/$APP_NAME.live.socket
-PID_PATH=$APP_PATH/$APP_NAME.live.pid
-LOG_FILE=$APP_PATH/log/cpanmonitor-err.log
+SOCKET_FILE=$APP_PATH/$APP_NAME.socket
+PID_PATH=$APP_PATH/$APP_NAME.pid
+LOG_FILE=$APP_PATH/log/cpanmonitor-fcgi-startup.log
 NPROC=5
 export CATALYST_CONFIG_LOCAL_SUFFIX=live
 export CPANMONITOR_DB=live
